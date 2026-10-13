@@ -1,0 +1,65 @@
+{
+  "rows": {
+    "train": 21000,
+    "test": 9000
+  },
+  "default_rate": {
+    "train": 0.2212,
+    "test": 0.2212
+  },
+  "features_in_model": [
+    "PAY_0",
+    "max_delay_6m",
+    "LIMIT_BAL",
+    "PAY_AMT1",
+    "payment_ratio_avg_5m",
+    "utilisation_avg_6m"
+  ],
+  "discrimination": {
+    "auc_train": 0.7689,
+    "auc_test": 0.7532,
+    "gini_train": 0.5378,
+    "gini_test": 0.5065,
+    "ks_train": 0.4178,
+    "ks_test": 0.3993,
+    "cv_auc_mean": 0.7684,
+    "cv_auc_std": 0.0084,
+    "benchmark_gbm_auc_test": 0.7742
+  },
+  "calibration": {
+    "brier_test": 0.1405,
+    "mean_pd_test": 0.2201,
+    "observed_dr_test": 0.2212
+  },
+  "stability": {
+    "psi_train_vs_test": 0.0008
+  },
+  "cutoff": {
+    "loss_ratio": 5,
+    "cutoff_score": 540,
+    "approval_rate": 0.5449,
+    "bad_rate_approved": 0.1107,
+    "profit_units": 1646,
+    "approve_all_profit_units": -2946,
+    "sensitivity": {
+      "3": {
+        "cutoff": 517,
+        "approval_rate": 0.7343,
+        "bad_rate_approved": 0.1285
+      },
+      "5": {
+        "cutoff": 540,
+        "approval_rate": 0.5449,
+        "bad_rate_approved": 0.1107
+      },
+      "8": {
+        "cutoff": 551,
+        "approval_rate": 0.2256,
+        "bad_rate_approved": 0.069
+      }
+    }
+  },
+  "fairness": {
+    "disparate_impact_ratio": 0.9268
+  }
+}

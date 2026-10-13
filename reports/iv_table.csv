@@ -1,0 +1,11 @@
+feature,iv,n_bins,decision
+PAY_0,0.8936,6,kept
+months_delayed_6m,0.8591,3,dropped: WoE corr > 0.7 with PAY_0
+max_delay_6m,0.7792,3,kept
+LIMIT_BAL,0.1925,8,kept
+PAY_AMT1,0.1595,6,kept
+payment_ratio_avg_5m,0.1188,3,kept
+utilisation_avg_6m,0.0781,2,kept
+utilisation_last,0.0502,2,dropped: WoE corr > 0.7 with utilisation_avg_6m
+AGE,0.0087,2,dropped: IV < 0.02
+BILL_AMT1,0.006,2,dropped: IV < 0.02

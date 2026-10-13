@@ -1,0 +1,25 @@
+name: tests and model run
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  scorecard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Unit tests (WoE/IV, KS, Gini, PSI, points scaling, cleaning)
+        run: pytest -q
+      - name: Download and verify data
+        run: python scripts/download_data.py
+      - name: Rebuild scorecard and check headline metrics
+        run: |
+          python run_scorecard.py > /dev/null
+          python -c "import json; m=json.load(open('reports/metrics.json')); d=m['discrimination']; assert d['auc_test'] > 0.74, d; assert m['stability']['psi_train_vs_test'] < 0.1; print('auc_test', d['auc_test'])"
